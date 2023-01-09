@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "225667019219",
+    "project_id": "famousplaces3firebase",
+    "storage_bucket": "famousplaces3firebase.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:225667019219:android:9f3ff1594d4ecd66e2ff26",
+        "android_client_info": {
+          "package_name": "com.example.famousplaces3"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "225667019219-6v5b6jjnl7nhagiteokifmb8gi5bhkg1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA5Kn2FbQBzZFBIovKYXd0qrlxOFcQfAvE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "225667019219-6v5b6jjnl7nhagiteokifmb8gi5bhkg1.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
