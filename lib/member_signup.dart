@@ -27,7 +27,7 @@ class MemberSignup extends StatelessWidget {
         var member = newMemberIdentify.user;
         //await member!.sendEmailVerification();
 
-        //print("New Member is ${member.toString()}");
+        print("New Member is ${member.toString()}");
       } catch(e){
         print("hata : $e");
       }
@@ -110,7 +110,7 @@ class MemberSignup extends StatelessWidget {
                     child: Row(
                       children: [
                         SizedBox(
-                          width: 50,
+                          width: 10,
                         ),
                         ElevatedButton(
                             onPressed: signUpTapped, child: Text("Sign Up")),
