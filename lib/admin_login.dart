@@ -10,10 +10,6 @@ class AdminLogin extends StatelessWidget {
     //Firebase admin giris islemi
   }
 
-  void memberLoginTapped(){
-    //Member Giris Ekranina At
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -35,8 +31,6 @@ class AdminLogin extends StatelessWidget {
              SizedBox(width: 50,),
              ElevatedButton(onPressed: LoginTapped, child: Text("Login")),
              SizedBox(height: 30,),
-             //TextButton(onPressed: yeniKayitTapped, child: Text("New Account")),
-
           ],
         )),
       ),

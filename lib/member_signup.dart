@@ -13,11 +13,14 @@ class MemberSignup extends StatelessWidget {
   TextEditingController memberPasswordController = TextEditingController();
   TextEditingController memberPasswordAgainController = TextEditingController();
 
+  late String email;
+  late String password;
+  late String passwordAgain;
 
   void signUpTapped() async {
-      String email = memberUsernameController.text;
-      String password = memberPasswordController.text;
-      String passwordAgain = memberPasswordAgainController.text;
+      email = memberUsernameController.text;
+      password = memberPasswordController.text;
+      passwordAgain = memberPasswordAgainController.text;
 
       try {
         UserCredential newMemberIdentify = await auth.createUserWithEmailAndPassword(email: email, password: password);
@@ -45,6 +48,8 @@ class MemberSignup extends StatelessWidget {
         context, MaterialPageRoute(builder: (context) => AdminLogin()));
   }
 
+  final formKey = GlobalKey<FormState>;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -53,71 +58,82 @@ class MemberSignup extends StatelessWidget {
         child: Padding(
           padding: const EdgeInsets.all(8.0),
           child: Center(
-            child: Column(
-              children: [
-                SizedBox(
-                  height: 30,
-                ),
-                Text("Member Username"),
-                TextField(
-                    controller: memberUsernameController,
+            child: Form(
+              child: Column(
+                children: [
+                  SizedBox(
+                    height: 30,
+                  ),
+                  Text("Member Username"),
+                  TextFormField(
+                    onSaved: (value){
+                      
+                  },
+                      controller: memberUsernameController,
+                      decoration: InputDecoration(
+                          border: OutlineInputBorder(
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(32))))),
+                  SizedBox(
+                    height: 60,
+                  ),
+                  Text("Member Password"),
+                  TextFormField(validator: (value) {
+                    if(value!.isEmpty){
+                      return "Invalid input";
+                    } else {
+                      
+                    }
+                  },
+                    obscureText: true,
+                    controller: memberPasswordController,
                     decoration: InputDecoration(
                         border: OutlineInputBorder(
-                            borderRadius:
-                                BorderRadius.all(Radius.circular(32))))),
-                SizedBox(
-                  height: 60,
-                ),
-                Text("Member Password"),
-                TextField(
-                  obscureText: true,
-                  controller: memberPasswordController,
-                  decoration: InputDecoration(
-                      border: OutlineInputBorder(
-                          borderRadius: BorderRadius.all(Radius.circular(32)))),
-                ),
-                SizedBox(
-                  height: 60,
-                ),
-                Text("Member Password Again"),
-                TextField(
-                  obscureText: true,
-                  controller: memberPasswordAgainController,
-                  decoration: InputDecoration(
-                      border: OutlineInputBorder(
-                          borderRadius: BorderRadius.all(Radius.circular(32)))),
-                ),
-                SizedBox(
-                  height: 40,
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(20.0),
-                  child: Row(
-                    children: [
-                      SizedBox(
-                        width: 50,
-                      ),
-                      ElevatedButton(
-                          onPressed: signUpTapped, child: Text("Sign Up")),
-                      SizedBox(
-                        width: 100,
-                      ),
-                      TextButton(
-                        onPressed: () => memberLoginTapped(context),
-                        child: Text("Member Login"),
-                        style: ButtonStyle(alignment: Alignment.centerRight),
-                      ),
-                    ],
+                            borderRadius: BorderRadius.all(Radius.circular(32)))),
                   ),
-                ),
-                SizedBox(
-                  height: 30,
-                ),
-                TextButton(
-                  onPressed: () => adminLoginTapped(context),
-                  child: Text("Admin Login"),
-                ),
-              ],
+                  SizedBox(
+                    height: 60,
+                  ),
+                  Text("Member Password Again"),
+                  TextField(
+                    obscureText: true,
+                    controller: memberPasswordAgainController,
+                    decoration: InputDecoration(
+                        border: OutlineInputBorder(
+                            borderRadius: BorderRadius.all(Radius.circular(32)))),
+                  ),
+                  SizedBox(
+                    height: 40,
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(20.0),
+                    child: Row(
+                      children: [
+                        SizedBox(
+                          width: 50,
+                        ),
+                        ElevatedButton(
+                            onPressed: signUpTapped, child: Text("Sign Up")),
+                        SizedBox(
+                          width: 100,
+                        ),
+                        TextButton(
+                          onPressed: () => memberLoginTapped(context),
+                          child: Text("Member Login"),
+                          style: ButtonStyle(alignment: Alignment.centerRight),
+                        ),
+                      ],
+                    ),
+                  ),
+                  SizedBox(
+                    height: 30,
+                  ),
+                  TextButton(
+                    onPressed: () => adminLoginTapped(context),
+                    child: Text("Admin Login"),
+                  ),
+                ],
+              ),
             ),
           ),
         ),
