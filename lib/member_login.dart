@@ -16,7 +16,6 @@ class MemberLogin extends StatelessWidget {
   String? email;
   String? password;
 
-
   final formKey = GlobalKey<FormState>();
 
   @override
@@ -55,7 +54,7 @@ class MemberLogin extends StatelessWidget {
                 Text("Member Password"),
                 TextFormField(
                   validator: (value) {
-                    if(value!.isEmpty){
+                    if (value!.isEmpty) {
                       return "Invalid password";
                     } else {}
                   },
@@ -76,24 +75,23 @@ class MemberLogin extends StatelessWidget {
                 ),
                 ElevatedButton(
                     onPressed: () async {
-                      if(formKey.currentState!.validate()){
+                      if (formKey.currentState!.validate()) {
                         formKey.currentState!.save();
                       }
                       FirebaseAuth auth = FirebaseAuth.instance;
 
-                      UserCredential memberLogin =
+                      try{UserCredential memberLogin =
                           await auth.signInWithEmailAndPassword(
                               email: email!, password: password!);
-                      if (memberLogin.user!.emailVerified) {
-                        print("Giris basarili");
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => FamousPlacesScreen()));
-                      } else {
-                        print("Hatali giris");
-                        print("${memberLogin}");
-                      }
+
+                      
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => FamousPlacesScreen()));
+                              } catch(e){
+                                print(e.toString());
+                              }
                     },
                     child: Text("Login")),
                 SizedBox(
