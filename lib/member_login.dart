@@ -7,28 +7,17 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 
 class MemberLogin extends StatelessWidget {
-  MemberLogin({super.key,});
+  MemberLogin({
+    super.key,
+  });
   TextEditingController memberUsernameController = TextEditingController();
   TextEditingController memberPasswordController = TextEditingController();
-  
-  late String email;
-  late String password;
 
-  void signInTapped(BuildContext context) async {
-    FirebaseAuth auth = FirebaseAuth.instance;
+  String? email;
+  String? password;
 
-    email = memberUsernameController.text;
-    password = memberPasswordController.text;
 
-    UserCredential memberLogin = await auth.signInWithEmailAndPassword(email: email, password: password);
-    if (memberLogin.user!.emailVerified){
-      print("Giris basarili");
-      Navigator.push(context, MaterialPageRoute(builder: (context) => FamousPlacesScreen()));
-    } else {
-      print("Hatali giris");
-      print("$memberLogin");
-    }
-  }
+  final formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
@@ -37,25 +26,86 @@ class MemberLogin extends StatelessWidget {
       body: Padding(
         padding: const EdgeInsets.all(8.0),
         child: SingleChildScrollView(
-          child: Center(child: Column(
-            children: [
-              SizedBox(height: 50,),
-              Text("Member Username"),
-              TextField(controller: memberUsernameController,
-              decoration: InputDecoration(border: OutlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(32))))),
-              SizedBox(height: 80,),
-              Text("Member Password"),
-              TextField(obscureText: true, controller: memberPasswordController,
-               decoration: InputDecoration(border: OutlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(32))))
-               ,),
-               SizedBox(height: 40,),
-               SizedBox(width: 50,),
-               ElevatedButton(onPressed: () => signInTapped(context), child: Text("Login")),
-               SizedBox(width: 100,),SizedBox(height: 30,),
-              //  TextButton(onPressed: () => yeniKayitTapped(context), child: Text("New Account")),
-        
-            ],
-          )),
+          child: Form(
+            key: formKey,
+            child: Center(
+                child: Column(
+              children: [
+                SizedBox(
+                  height: 50,
+                ),
+                Text("Member Username"),
+                TextFormField(
+                    validator: (value) {
+                      if (value!.isEmpty) {
+                        return "Invalid input";
+                      } else {}
+                    },
+                    onSaved: (value) {
+                      email = value!;
+                    },
+                    controller: memberUsernameController,
+                    decoration: InputDecoration(
+                        border: OutlineInputBorder(
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(32))))),
+                SizedBox(
+                  height: 80,
+                ),
+                Text("Member Password"),
+                TextFormField(
+                  validator: (value) {
+                    if(value!.isEmpty){
+                      return "Invalid password";
+                    } else {}
+                  },
+                  onSaved: (newValue) {
+                    password = newValue!;
+                  },
+                  obscureText: true,
+                  controller: memberPasswordController,
+                  decoration: InputDecoration(
+                      border: OutlineInputBorder(
+                          borderRadius: BorderRadius.all(Radius.circular(32)))),
+                ),
+                SizedBox(
+                  height: 40,
+                ),
+                SizedBox(
+                  width: 50,
+                ),
+                ElevatedButton(
+                    onPressed: () async {
+                      if(formKey.currentState!.validate()){
+                        formKey.currentState!.save();
+                      }
+                      FirebaseAuth auth = FirebaseAuth.instance;
+
+                      UserCredential memberLogin =
+                          await auth.signInWithEmailAndPassword(
+                              email: email!, password: password!);
+                      if (memberLogin.user!.emailVerified) {
+                        print("Giris basarili");
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => FamousPlacesScreen()));
+                      } else {
+                        print("Hatali giris");
+                        print("${memberLogin}");
+                      }
+                    },
+                    child: Text("Login")),
+                SizedBox(
+                  width: 100,
+                ),
+                SizedBox(
+                  height: 30,
+                ),
+                //  TextButton(onPressed: () => yeniKayitTapped(context), child: Text("New Account")),
+              ],
+            )),
+          ),
         ),
       ),
     );

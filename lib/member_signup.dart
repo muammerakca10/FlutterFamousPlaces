@@ -17,7 +17,7 @@ class MemberSignup extends StatelessWidget {
   late String password;
   late String passwordAgain;
 
-  void signUpTapped() async {
+  void signUpTapped(BuildContext context) async {
       email = memberUsernameController.text;
       password = memberPasswordController.text;
       passwordAgain = memberPasswordAgainController.text;
@@ -28,6 +28,8 @@ class MemberSignup extends StatelessWidget {
         //await member!.sendEmailVerification();
 
         print("New Member is ${member.toString()}");
+        ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("Kayit yapildi, Giris Ekranina gidebilirsiniz"),));
+        Navigator.push(context, MaterialPageRoute(builder: (context) => MemberLogin(),));
       } catch(e){
         print("hata : $e");
       }
@@ -48,7 +50,7 @@ class MemberSignup extends StatelessWidget {
         context, MaterialPageRoute(builder: (context) => AdminLogin()));
   }
 
-  final formKey = GlobalKey<FormState>;
+  final formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
@@ -59,6 +61,7 @@ class MemberSignup extends StatelessWidget {
           padding: const EdgeInsets.all(8.0),
           child: Center(
             child: Form(
+              key: formKey,
               child: Column(
                 children: [
                   SizedBox(
@@ -113,7 +116,7 @@ class MemberSignup extends StatelessWidget {
                           width: 10,
                         ),
                         ElevatedButton(
-                            onPressed: signUpTapped, child: Text("Sign Up")),
+                            onPressed: () => signUpTapped(context), child: Text("Sign Up")),
                         SizedBox(
                           width: 100,
                         ),
