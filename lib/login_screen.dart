@@ -5,8 +5,8 @@ import 'member_signup.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 
-class MemberLogin extends StatelessWidget {
-  MemberLogin({
+class LoginScreen extends StatelessWidget {
+  LoginScreen({
     super.key,
   });
   TextEditingController memberUsernameController = TextEditingController();

@@ -29,12 +29,12 @@ class MemberSignup extends StatelessWidget {
 
       print("New Member is ${member.toString()}");
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-        content: Text("Kayit yapildi, Giris Ekranina gidebilirsiniz"),
+        content: Text("Kayit yapildi, Giris Ekranina yonlendiriliyorsunuz"),
       ));
       Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (context) => MemberLogin(),
+            builder: (context) => LoginScreen(),
           ));
     } catch (e) {
       print("hata : $e");
@@ -45,7 +45,7 @@ class MemberSignup extends StatelessWidget {
     Navigator.push(
         context,
         MaterialPageRoute(
-          builder: (context) => MemberLogin(),
+          builder: (context) => LoginScreen(),
         ));
   }
 
