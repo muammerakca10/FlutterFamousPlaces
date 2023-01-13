@@ -80,18 +80,20 @@ class MemberLogin extends StatelessWidget {
                       }
                       FirebaseAuth auth = FirebaseAuth.instance;
 
-                      try{UserCredential memberLogin =
-                          await auth.signInWithEmailAndPassword(
-                              email: email!, password: password!);
+                      try {
+                        UserCredential memberLogin =
+                            await auth.signInWithEmailAndPassword(
+                                email: email!, password: password!);
 
-                      
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => FamousPlacesScreen()));
-                              } catch(e){
-                                print(e.toString());
-                              }
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => FamousPlacesScreen()));
+                      } catch (e) {
+                        ScaffoldMessenger.of(context)
+                            .showSnackBar(SnackBar(content: Text("Hata + $e")));
+                        print(e.toString());
+                      }
                     },
                     child: Text("Login")),
                 SizedBox(

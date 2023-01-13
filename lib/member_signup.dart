@@ -18,23 +18,28 @@ class MemberSignup extends StatelessWidget {
   late String passwordAgain;
 
   void signUpTapped(BuildContext context) async {
-      email = memberUsernameController.text;
-      password = memberPasswordController.text;
-      passwordAgain = memberPasswordAgainController.text;
+    email = memberUsernameController.text;
+    password = memberPasswordController.text;
+    passwordAgain = memberPasswordAgainController.text;
 
-      try {
-        UserCredential newMemberIdentify = await auth.createUserWithEmailAndPassword(email: email, password: password);
-        var member = newMemberIdentify.user;
-        //await member!.sendEmailVerification();
+    try {
+      UserCredential newMemberIdentify = await auth
+          .createUserWithEmailAndPassword(email: email, password: password);
+      var member = newMemberIdentify.user;
+      //await member!.sendEmailVerification();
 
-        print("New Member is ${member.toString()}");
-        ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("Kayit yapildi, Giris Ekranina gidebilirsiniz"),));
-        Navigator.push(context, MaterialPageRoute(builder: (context) => MemberLogin(),));
-      } catch(e){
-        print("hata : $e");
-      }
-
-    
+      print("New Member is ${member.toString()}");
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+        content: Text("Kayit yapildi, Giris Ekranina gidebilirsiniz"),
+      ));
+      Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => MemberLogin(),
+          ));
+    } catch (e) {
+      print("hata : $e");
+    }
   }
 
   void memberLoginTapped(BuildContext context) {
@@ -43,11 +48,6 @@ class MemberSignup extends StatelessWidget {
         MaterialPageRoute(
           builder: (context) => MemberLogin(),
         ));
-  }
-
-  void adminLoginTapped(BuildContext context) {
-    Navigator.push(
-        context, MaterialPageRoute(builder: (context) => AdminLogin()));
   }
 
   final formKey = GlobalKey<FormState>();
@@ -69,9 +69,7 @@ class MemberSignup extends StatelessWidget {
                   ),
                   Text("Member Username"),
                   TextFormField(
-                    onSaved: (value){
-                      
-                  },
+                      onSaved: (value) {},
                       controller: memberUsernameController,
                       decoration: InputDecoration(
                           border: OutlineInputBorder(
@@ -81,18 +79,18 @@ class MemberSignup extends StatelessWidget {
                     height: 60,
                   ),
                   Text("Member Password"),
-                  TextFormField(validator: (value) {
-                    if(value!.isEmpty){
-                      return "Invalid input";
-                    } else {
-                      
-                    }
-                  },
+                  TextFormField(
+                    validator: (value) {
+                      if (value!.isEmpty) {
+                        return "Invalid input";
+                      } else {}
+                    },
                     obscureText: true,
                     controller: memberPasswordController,
                     decoration: InputDecoration(
                         border: OutlineInputBorder(
-                            borderRadius: BorderRadius.all(Radius.circular(32)))),
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(32)))),
                   ),
                   SizedBox(
                     height: 60,
@@ -103,37 +101,28 @@ class MemberSignup extends StatelessWidget {
                     controller: memberPasswordAgainController,
                     decoration: InputDecoration(
                         border: OutlineInputBorder(
-                            borderRadius: BorderRadius.all(Radius.circular(32)))),
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(32)))),
                   ),
                   SizedBox(
                     height: 40,
                   ),
-                  Padding(
-                    padding: const EdgeInsets.all(20.0),
-                    child: Row(
-                      children: [
-                        SizedBox(
-                          width: 10,
-                        ),
-                        ElevatedButton(
-                            onPressed: () => signUpTapped(context), child: Text("Sign Up")),
-                        SizedBox(
-                          width: 100,
-                        ),
-                        TextButton(
-                          onPressed: () => memberLoginTapped(context),
-                          child: Text("Member Login"),
-                          style: ButtonStyle(alignment: Alignment.centerRight),
-                        ),
-                      ],
-                    ),
+                  SizedBox(
+                    width: 10,
                   ),
+                  ElevatedButton(
+                      onPressed: () => signUpTapped(context),
+                      child: Text("Sign Up")),
                   SizedBox(
                     height: 30,
                   ),
                   TextButton(
-                    onPressed: () => adminLoginTapped(context),
-                    child: Text("Admin Login"),
+                    onPressed: () => memberLoginTapped(context),
+                    child: Text("Member Login"),
+                    style: ButtonStyle(alignment: Alignment.centerRight),
+                  ),
+                  SizedBox(
+                    height: 30,
                   ),
                 ],
               ),

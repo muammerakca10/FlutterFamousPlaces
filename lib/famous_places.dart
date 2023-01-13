@@ -1,6 +1,6 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 class FamousPlacesScreen extends StatefulWidget {
   const FamousPlacesScreen({super.key});
@@ -10,11 +10,23 @@ class FamousPlacesScreen extends StatefulWidget {
 }
 
 class _FamousPlacesScreenState extends State<FamousPlacesScreen> {
+  
+  FirebaseAuth auth = FirebaseAuth.instance;
+  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text("Konya Famous Places")),
-      body: Text("Famous"),
+      appBar: AppBar(title: Text("Famous Places"), centerTitle: true, actions: [
+        IconButton(onPressed: (){
+          if(auth.currentUser != null){
+            auth.signOut();
+            print(auth.currentUser);
+          } else {
+            print("Error");
+          }
+        }, icon: Icon(Icons.logout))
+      ],),
+      body: Center(child: Text("Famous")),
     );
   }
 }
