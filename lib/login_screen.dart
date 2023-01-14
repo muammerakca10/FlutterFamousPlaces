@@ -1,7 +1,8 @@
-import 'package:famousplaces3/famous_places.dart';
+import 'package:famousplaces3/admin/admin_list_screen.dart';
+import 'package:famousplaces3/member/member_famous_places.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'member_signup.dart';
+import 'signup_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 
@@ -83,11 +84,17 @@ class LoginScreen extends StatelessWidget {
                         UserCredential memberLogin =
                             await auth.signInWithEmailAndPassword(
                                 email: email!, password: password!);
-
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => FamousPlacesScreen()));
+                        if (email == "admin@gmail.com") {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => AdminListScreen()));
+                        } else {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => FamousPlacesScreen()));
+                        }
                       } catch (e) {
                         ScaffoldMessenger.of(context)
                             .showSnackBar(SnackBar(content: Text("Hata + $e")));
@@ -96,12 +103,17 @@ class LoginScreen extends StatelessWidget {
                     },
                     child: Text("Login")),
                 SizedBox(
-                  width: 100,
+                  height: 20,
                 ),
-                SizedBox(
-                  height: 30,
-                ),
-                //  TextButton(onPressed: () => yeniKayitTapped(context), child: Text("New Account")),
+                TextButton(
+                    onPressed: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => MemberSignup(),
+                          ));
+                    },
+                    child: Text("New Account")),
               ],
             )),
           ),

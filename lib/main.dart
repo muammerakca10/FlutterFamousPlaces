@@ -1,6 +1,6 @@
 import 'package:famousplaces3/firebase_options.dart';
 import 'package:flutter/material.dart';
-import 'member_signup.dart';
+import 'signup_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 

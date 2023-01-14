@@ -1,3 +1,4 @@
+import 'package:famousplaces3/login_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -20,6 +21,7 @@ class _FamousPlacesScreenState extends State<FamousPlacesScreen> {
         IconButton(onPressed: (){
           if(auth.currentUser != null){
             auth.signOut();
+            Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => LoginScreen()));
             print(auth.currentUser);
           } else {
             print("Error");
