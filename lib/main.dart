@@ -1,8 +1,10 @@
+import 'package:famousplaces3/admin/admin_add_place_screen.dart';
 import 'package:famousplaces3/firebase_options.dart';
 import 'package:flutter/material.dart';
 import 'signup_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'admin/admin_edit_screen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -11,6 +13,7 @@ void main() async {
 }
 
 class MyApp extends StatelessWidget {
+
   const MyApp({super.key});
 
   @override
@@ -18,7 +21,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData.dark(),
-      home: MemberSignup(),
+      home: AdminEditScreen(),
     );
   }
 }

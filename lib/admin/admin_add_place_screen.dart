@@ -3,9 +3,9 @@ import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 
 
-class MyWidget extends StatelessWidget {
+class AdminAddScreen extends StatelessWidget {
   
-  const MyWidget({super.key});
+  const AdminAddScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -15,7 +15,7 @@ class MyWidget extends StatelessWidget {
         padding: const EdgeInsets.all(8.0),
         child: Column(
           children: [
-            
+            Text("data")
           ],
         ),
       ),
