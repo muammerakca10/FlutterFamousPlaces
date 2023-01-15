@@ -21,9 +21,11 @@ class _AdminListScreenState extends State<AdminListScreen> {
   //Bu listi firebaseden cek
   //Tiklanan elemanin indexine gore bilgileri Edit Screene aktar
   List<FamousPlaceModel> list = [
-    FamousPlaceModel("Mevlana", "Mevlana Museum", {1: 2}, "image1"),
-    FamousPlaceModel("Asd", "Asd Museum", {1: 2}, "image2"),
+    FamousPlaceModel("Mevlana", "Mevlana Museum", {12.0 : 30.0}, "image1"),
+    FamousPlaceModel("Asd", "Asd Museum", {40.0 : 50.0}, "https://flutter.github.io/assets-for-api-docs/assets/widgets/owl.jpg"),
   ];
+
+  
 
 
 
@@ -61,7 +63,7 @@ class _AdminListScreenState extends State<AdminListScreen> {
                     Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => AdminEditScreen()));
+                            builder: (context) => AdminEditScreen(list[index].name!,list[index].info!,list[index].coordinates ,list[index].image)));
                   },
                   child: Text(list[index].name!));
             }),

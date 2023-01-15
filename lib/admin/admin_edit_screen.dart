@@ -1,11 +1,22 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:geolocator/geolocator.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:firebase_core/firebase_core.dart';
 
 class AdminEditScreen extends StatefulWidget {
-  const AdminEditScreen({super.key});
+  late String placeName;
+  late String placeDescription;
+  late Map<double,double> coordinates;
+  late var image;
+
+  
+
+  AdminEditScreen(this.placeName, this.placeDescription, this.coordinates, this.image);
 
   @override
   State<AdminEditScreen> createState() => _AdminEditScreenState();
@@ -13,6 +24,14 @@ class AdminEditScreen extends StatefulWidget {
 
 class _AdminEditScreenState extends State<AdminEditScreen> {
   //Kaydete basinca update yapacak firebaseden
+
+  TextEditingController latitudeTextController = TextEditingController();
+  TextEditingController longitudeTextController = TextEditingController();
+
+  @override
+  void initState() {
+    // TODO: implement initState
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -28,14 +47,14 @@ class _AdminEditScreenState extends State<AdminEditScreen> {
               height: 20,
             ),
             Text(
-              "Yer Adi",
+              widget.placeName,
               style: TextStyle(fontSize: 30, color: Colors.green),
             ),
             SizedBox(
               height: 30,
             ),
             Text(
-              "Yer Aciklamasi",
+              widget.placeDescription,
               style: TextStyle(fontSize: 15),
             ),
             SizedBox(
@@ -43,12 +62,46 @@ class _AdminEditScreenState extends State<AdminEditScreen> {
             ),
             Image(
                 image: NetworkImage(
-                    'https://flutter.github.io/assets-for-api-docs/assets/widgets/owl.jpg')),
+                    '${widget.image}')),
             SizedBox(
               height: 30,
             ),
-            Text("Haritadaki yeri"),
-
+            Text(
+              "Change Coordinates",
+            ),
+            TextField(
+              controller: latitudeTextController,
+              decoration: new InputDecoration.collapsed(
+                hintText: widget.coordinates.toString(),
+                border: OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.grey)),
+              ),
+            ),
+            SizedBox(
+              height: 10,
+            ),
+            TextField(
+              controller: longitudeTextController,
+              decoration: new InputDecoration.collapsed(
+                hintText: widget.coordinates.toString(),
+                border: OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.grey)),
+              ),
+            ),
+            SizedBox(
+              height: 20,
+            ),
+            ElevatedButton(onPressed: () {}, child: Text("Save Changes")),
+            SizedBox(
+              height: 10,
+            ),
+            Text(
+              "Created by Muammer Akca",
+              style: TextStyle(decoration: TextDecoration.underline),
+            ),
+            TextButton(onPressed: () {
+              Navigator.pop(context);
+            }, child: Text("Cancel"))
           ]),
         ),
       ),
