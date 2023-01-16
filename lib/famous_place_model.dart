@@ -1,7 +1,7 @@
 class FamousPlaceModel {
   String? name;
   String? info;
-  Map<double,double> coordinates;
+  Map<String,double> coordinates;
 
   String? image; 
 

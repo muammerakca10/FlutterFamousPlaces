@@ -17,8 +17,6 @@ Future<void> main() async {
 
 class MyApp extends StatelessWidget {
 
-  
-
   const MyApp({super.key});
 
   @override
@@ -27,7 +25,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       theme: ThemeData.dark(),
-      home: SignupScreen(),
+      home: AdminListScreen(),
     );
   }
 }

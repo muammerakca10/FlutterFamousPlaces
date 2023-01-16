@@ -7,11 +7,13 @@ import 'package:image_picker/image_picker.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_storage/firebase_storage.dart';
+
 
 class AdminEditScreen extends StatefulWidget {
   late String placeName;
   late String placeDescription;
-  late Map<double,double> coordinates;
+  late Map<String,double> coordinates;
   late var image;
 
   
@@ -61,8 +63,7 @@ class _AdminEditScreenState extends State<AdminEditScreen> {
               height: 30,
             ),
             Image(
-                image: NetworkImage(
-                    '${widget.image}')),
+                image: AssetImage("images/addicon.png")),
             SizedBox(
               height: 30,
             ),
@@ -72,7 +73,7 @@ class _AdminEditScreenState extends State<AdminEditScreen> {
             TextField(
               controller: latitudeTextController,
               decoration: new InputDecoration.collapsed(
-                hintText: widget.coordinates.toString(),
+                hintText: widget.coordinates["latitude"].toString(),
                 border: OutlineInputBorder(
                     borderSide: BorderSide(color: Colors.grey)),
               ),
@@ -83,7 +84,7 @@ class _AdminEditScreenState extends State<AdminEditScreen> {
             TextField(
               controller: longitudeTextController,
               decoration: new InputDecoration.collapsed(
-                hintText: widget.coordinates.toString(),
+                hintText: widget.coordinates["longitude"].toString(),
                 border: OutlineInputBorder(
                     borderSide: BorderSide(color: Colors.grey)),
               ),

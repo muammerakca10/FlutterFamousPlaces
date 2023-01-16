@@ -6,6 +6,8 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
+import 'package:firebase_storage/firebase_storage.dart';
+
 
 import '../login_screen.dart';
 
@@ -21,8 +23,8 @@ class _AdminListScreenState extends State<AdminListScreen> {
   //Bu listi firebaseden cek
   //Tiklanan elemanin indexine gore bilgileri Edit Screene aktar
   List<FamousPlaceModel> list = [
-    FamousPlaceModel("Mevlana", "Mevlana Museum", {12.0 : 30.0}, "image1"),
-    FamousPlaceModel("Asd", "Asd Museum", {40.0 : 50.0}, "https://flutter.github.io/assets-for-api-docs/assets/widgets/owl.jpg"),
+    FamousPlaceModel("Mevlana", "Mevlana Museum", {"latitude" : 30.0,"longitude" : 60 }, "image1"),
+    FamousPlaceModel("Asd", "Asd Museum", {"latitude" : 50.0, "longitude" : 40}, "image2"),
   ];
 
   
