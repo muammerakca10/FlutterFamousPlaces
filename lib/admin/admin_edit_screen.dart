@@ -91,7 +91,10 @@ class _AdminEditScreenState extends State<AdminEditScreen> {
             SizedBox(
               height: 20,
             ),
-            ElevatedButton(onPressed: () {}, child: Text("Save Changes")),
+            ElevatedButton(onPressed: () {
+
+              //Degisiklikleri firebase'e uygula
+            }, child: Text("Save Changes")),
             SizedBox(
               height: 10,
             ),

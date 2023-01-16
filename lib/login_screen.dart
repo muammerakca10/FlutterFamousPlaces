@@ -110,7 +110,7 @@ class LoginScreen extends StatelessWidget {
                       Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => MemberSignup(),
+                            builder: (context) => SignupScreen(),
                           ));
                     },
                     child: Text("New Account")),

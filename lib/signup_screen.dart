@@ -3,8 +3,8 @@ import 'login_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
-class MemberSignup extends StatelessWidget {
-  MemberSignup({super.key});
+class SignupScreen extends StatelessWidget {
+  SignupScreen({super.key});
 
   FirebaseAuth auth = FirebaseAuth.instance;
 
